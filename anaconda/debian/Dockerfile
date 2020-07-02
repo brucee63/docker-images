@@ -17,4 +17,11 @@ RUN wget --quiet https://repo.anaconda.com/archive/Anaconda2-2019.10-Linux-x86_6
     find /opt/conda/ -follow -type f -name '*.js.map' -delete && \
     /opt/conda/bin/conda clean -afy
 
+RUN sed -i 's/buster main/buster main contrib/g' etc/apt/sources.list
+RUN apt-get update
+
+RUN conda config --add channels conda-forge
+RUN conda install -y jupyterthemes
+RUN jt -t chesterish
+
 CMD [ "/bin/bash" ]
