@@ -20,6 +20,8 @@ RUN wget --quiet https://repo.anaconda.com/archive/Anaconda2-2019.10-Linux-x86_6
 RUN sed -i 's/buster main/buster main contrib/g' etc/apt/sources.list
 RUN apt-get update
 
+RUN conda update -n base -c defaults conda
+
 RUN conda config --add channels conda-forge
 RUN conda install -y jupyterthemes
 RUN jt -t chesterish
